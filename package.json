@@ -14,10 +14,11 @@
     "dependencies": {
         "express": "3.x" ,
         "mongodb": "2.2.x",
-        "connect-mongo" : "1.3.x",
+        "connect-mongo" : "1.3.*",
         "express-session" : "*" ,
         "cookie-parser" : "*" ,
-        "request-json" : "*"
+        "request-json" : "*",
+        "mongoose" : "*"
       },
     "repository": {
         "type": "git",

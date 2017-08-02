@@ -6,11 +6,13 @@ var routes = require('./routes/routes.js');
 var MongoStore = require('connect-mongo')({
     session: expressSession
 });
+var mongohandler = require("./db/db.client.js");
 
 
 createServer = function createServer() {
 
     var server = express();
+    var dbUrl = mongohandler.dbUrl();
     // specify middleware 
     //server.use(express.bodyParser());
     server.use(express.static(__dirname + '/public'));
@@ -20,11 +22,16 @@ createServer = function createServer() {
     server.use(cookieParser());
     server.use(expressSession({
         secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn',
+        resave: true,
+        saveUninitialized: true,
         store: new MongoStore({
-            db: 'traiderioSessions'
+            //url: "mongodb://localhost/traiderioSessions"
+            url: dbUrl
+            //db: 'traiderioSessions',
+            //db: 'traiderio'
         })
     }));
-
+    
 
     // attach router handlers
     routes.attachHandlers(server); //, passport);
