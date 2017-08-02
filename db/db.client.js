@@ -2,7 +2,7 @@
 var mongo = require("mongodb");
 var MongoClient = mongo.MongoClient,
     Server = require('mongodb').Server,
-    BSON = mongo.BSONPure;
+    ObjectID = mongo.ObjectID;
 
 
 exports.getDbClient = function() {
@@ -20,5 +20,5 @@ exports.dbUrl = function() {
 }
 
 exports.makeObjectID = function(id) {
-    return new BSON.ObjectID(id);
+    return new ObjectID(id);
 };
