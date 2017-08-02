@@ -1,14 +1,13 @@
 
 var mongo = require("mongodb");
-var MongoClient = mongo.MongoClient,
+var MongoClient = mongo.mongoClient,
     Server = require('mongodb').Server,
     BSON = mongo.BSONPure;
 
 
 exports.getDbClient = function() {
     return new MongoClient(new Server("127.0.0.1", 27017), {
-        native_parser: true
-    });
+        native_parser : true    });
 };
 
 exports.dbName = function() {
