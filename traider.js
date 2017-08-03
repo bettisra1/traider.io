@@ -14,7 +14,7 @@ createServer = function createServer() {
     var server = express();
     var dbUrl = mongohandler.dbUrl();
     // specify middleware 
-    //server.use(express.bodyParser());
+    server.use(express.bodyParser());
     server.use(express.static(__dirname + '/public'));
     server.use('/product/*', express.static(__dirname + '/public'));
     server.use('/basket/', express.static(__dirname + '/public'));

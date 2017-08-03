@@ -20,5 +20,6 @@ exports.dbUrl = function() {
 }
 
 exports.makeObjectID = function(id) {
+    console.log("db.client.js : makeObjectID: "+ id);
     return new ObjectID(id);
 };

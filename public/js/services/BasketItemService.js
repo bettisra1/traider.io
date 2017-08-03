@@ -39,6 +39,26 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
             });
         };
 
+        basketService.add = function(id, itemCount, callback) {
+            caller = this;
+            var _id = id;
+            var _itemCount = itemCount;
+            $http({
+                method: 'post',
+                url: '/api/basketItems/Add',
+                data: {
+                    id: _id,
+                    itemCount: _itemCount
+                   }
+            }).success(function (data) {
+                caller.itemCount = data.ItemCount;
+                caller.broadcastItemCount();
+                callback(null, data);
+            }).error(function(err) {
+                callback(err);
+            });
+        }
+
         return basketService;
     }
 ]);

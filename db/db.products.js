@@ -8,6 +8,7 @@ exports.getById = function(id, callback) {
     if (callback === null || typeof(callback) !== "function") {
         throw "Call to db method must include callback function"
     }
+    console.log("db.prodcts.js : getById: "+ id);
     var mongoclient = mongoHandler.getDbClient();
     // Open the connection to the server
     var dbUrl = mongoHandler.dbUrl();

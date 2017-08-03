@@ -9,5 +9,13 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
         $scope.basketItemCount = BasketItems.itemCount;
     });
 
+    $scope.getTotal = function() {
+   		var total = 0;
+   		for (var i = $scope.basketItemCount - 1; i >= 0; i--) {
+   			total = $scope.products[i].price*$scope.products[i].itemCount + total;
+   		}
+
+   		return total;
+    }
     //$scope.$on('basketUpdate', function(event, args) {alert('caught');});
 });

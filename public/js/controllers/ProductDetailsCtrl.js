@@ -5,10 +5,17 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
         $scope.product = data;
     });
 
-    $scope.addToBasket = function(product) {
-        BasketItems.addOne(product._id, function(err, data) {
+    $scope.addToBasket = function(product,count) {
+        /*BasketItems.addOne(product._id, function(err, data) {
             $scope.$emit('basketUpdate');
             if (err) {
+                alert(err);
+                return;
+            }
+        });*/
+        BasketItems.add(product._id, count, function(err, data){
+            $scope.$emit('basketUpdate');
+            if(err){
                 alert(err);
                 return;
             }

@@ -9,12 +9,12 @@
     <tbody>
         <tr data-ng-repeat="i in products">
             <td>{{i.name}}</td>
-            <td>1</td>
+            <td>{{i.itemCount}}</td>
             <td>&pound;{{i.price}}</td>
         </tr>
         <tr>
             <td colspan="2" align="right">Total</td>
-            <td>&pound;30.00</td>
+            <td>&pound;{{getTotal()}}</td>
         </tr>
     </tbody>
 </table>

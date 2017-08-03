@@ -67,6 +67,7 @@ function seed(req, res) {
 }
 
 function view(req, res) {
+    console.log("api.products.js : view : "+ req.params);
     db.getById(req.params.id, function(err, data) {
         if (err) {
             console.log(err);
