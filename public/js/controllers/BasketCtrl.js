@@ -17,5 +17,20 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
 
    		return total;
     }
+
+    $scope.removeFromBasket = function(product) {
+    	console.log(product);
+    	console.log("basketItemCount: "+ $scope.basketItemCount);
+    	BasketItems.remove(product.productId, product.itemCount, function(err, data){
+            $scope.$emit('basketUpdate');
+            $scope.products = data;
+            if(err){
+                alert(err);
+                return;
+            }
+        });
+ 		console.log($scope.products);
+ 		console.log("basketItemCount: "+ $scope.basketItemCount);
+    }
     //$scope.$on('basketUpdate', function(event, args) {alert('caught');});
 });
