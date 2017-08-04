@@ -9,7 +9,7 @@
     <tbody>
         <tr data-ng-repeat="i in products">
             <td>{{i.name}}</td>
-            <td>{{i.itemCount}}</td>
+            <td><input type="submit" value="-" ng-click="reduceItem(i)" />{{i.itemCount}}<input type="submit" value="+" ng-click="addItem(i)" /></td>
             <td>&pound;{{i.price}}</td>
             <td><input type="submit" value="X" ng-click="removeFromBasket(i)" /></td>
         </tr>

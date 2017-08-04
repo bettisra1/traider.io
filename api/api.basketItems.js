@@ -33,7 +33,9 @@ var addItem = function(req, res) {
         var productInfo = {
             "productId": data._id,
             "name": data.name,
-            "price": data.offers.price
+            "price": data.offers.price,
+            "itemCount" : 1
+
         };
 
 
@@ -53,6 +55,7 @@ var addItem = function(req, res) {
 
 var addMany = function(req, res) {
     var productId = req.body.id;
+    var requestItemCount = req.body.itemCount*1;
     console.log("api.basketItems.js: addMany : req"+ req.body.id);
     var client = requestJson.createClient('http://127.0.0.1:5000/');
 
@@ -60,19 +63,45 @@ var addMany = function(req, res) {
         if (err) {
             return res.send(500);
         }
-        console.log(data);
-        var productInfo = {
-            "productId": data._id,
-            "name": data.name,
-            "price": data.offers.price,
-            "itemCount" : req.body.itemCount
-        };
-
+        console.log(data);        
 
         var sess = req.session;
         if (!sess.products) {
             sess.products = new Array();
+            var productInfo = {
+                "productId": data._id,
+                "name": data.name,
+                "price": data.offers.price,
+                "itemCount" : requestItemCount
+            };
+            sess.products.push(productInfo);
+            return res.send({
+                ItemCount: sess.products.length
+            });
+        } else {
+            var exists = false;
+            for (var i = 0; i < sess.products.length; i++) {
+                if(productId == sess.products[i].productId)
+                {
+                    exists = true;
+                    sess.products[i].itemCount = sess.products[i].itemCount*1 + requestItemCount;
+                }  
+            }
+            if(!exists)
+            {
+                var productInfo = {
+                    "productId": data._id,
+                    "name": data.name,
+                    "price": data.offers.price,
+                    "itemCount" : requestItemCount
+                };
+                sess.products.push(productInfo);
+            }
+            return res.send({
+                ItemCount: sess.products.length
+            });
         }
+
         sess.products.push(productInfo);
         return res.send({
             ItemCount: sess.products.length
@@ -85,6 +114,7 @@ var addMany = function(req, res) {
 
 var remove = function(req, res) {
     var productId = req.body.id;
+    var requestItemCount = req.body.itemCount;
     console.log("api.basketItems.js: remove: id: " + productId);
 
     var client = requestJson.createClient('http://127.0.0.1:5000/');
@@ -94,12 +124,12 @@ var remove = function(req, res) {
             return res.send(500);
         }
         console.log(data);
-        var productInfo = {
+        /*var productInfo = {
             "productId": data._id,
             "name": data.name,
             "price": data.offers.price,
             "itemCount" : req.body.itemCount
-        };
+        };*/
 
 
         var sess = req.session;
@@ -111,9 +141,15 @@ var remove = function(req, res) {
         } else {
             var newProducts = new Array();
             for (var i = 0; i < sess.products.length; i++) {
-                if(productInfo.productId != sess.products[i].productId)
+                if(productId != sess.products[i].productId)
                 {
                     newProducts.push(sess.products[i]);
+                } else {
+                    if(sess.products[i].itemCount > requestItemCount)
+                    {
+                        sess.products[i].itemCount = sess.products[i].itemCount - requestItemCount;
+                        newProducts.push(sess.products[i]);
+                    }
                 }
             }
             sess.products = newProducts;

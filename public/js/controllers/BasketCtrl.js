@@ -22,8 +22,9 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
     	console.log(product);
     	console.log("basketItemCount: "+ $scope.basketItemCount);
     	BasketItems.remove(product.productId, product.itemCount, function(err, data){
-            $scope.$emit('basketUpdate');
             $scope.products = data;
+            $scope.$emit('basketUpdate');
+            
             if(err){
                 alert(err);
                 return;
@@ -31,6 +32,30 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
         });
  		console.log($scope.products);
  		console.log("basketItemCount: "+ $scope.basketItemCount);
+    }
+
+    $scope.reduceItem = function(product) {
+    	BasketItems.remove(product.productId, 1, function(err, data){
+    		$scope.products = data;	
+    		$scope.$emit('basketUpdate');
+    		
+    		if(err){
+                alert(err);
+                return;
+            }
+    	});
+    }
+
+    $scope.addItem = function(product) {
+    	BasketItems.add(product.productId, 1, function(err, data) {
+    		$scope.products = data;
+    		$scope.$emit('basketUpdate');
+    		
+    		if(err){
+                alert(err);
+                return;
+            }
+    	});
     }
     //$scope.$on('basketUpdate', function(event, args) {alert('caught');});
 });
