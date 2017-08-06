@@ -1,4 +1,4 @@
-angular.module('BasketCtrl', []).controller('BasketController', function($scope, BasketItems) {
+angular.module('BasketCtrl', []).controller('BasketController', function($scope, $route, BasketItems) {
     BasketItems.getAll(function(data) {
         $scope.products = data;
     });
@@ -23,6 +23,7 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
     	console.log("basketItemCount: "+ $scope.basketItemCount);
     	BasketItems.remove(product.productId, product.itemCount, function(err, data){
             $scope.products = data;
+            $route.reload();
             $scope.$emit('basketUpdate');
             
             if(err){
@@ -37,6 +38,7 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
     $scope.reduceItem = function(product) {
     	BasketItems.remove(product.productId, 1, function(err, data){
     		$scope.products = data;	
+    		$route.reload();
     		$scope.$emit('basketUpdate');
     		
     		if(err){
@@ -49,6 +51,7 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
     $scope.addItem = function(product) {
     	BasketItems.add(product.productId, 1, function(err, data) {
     		$scope.products = data;
+    		$route.reload();
     		$scope.$emit('basketUpdate');
     		
     		if(err){
