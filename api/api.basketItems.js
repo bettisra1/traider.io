@@ -5,6 +5,7 @@ module.exports = function attachHandlers(router) { //, passport) {
     // get requests
     router.get('/api/basketItems/Add/:productId', addItem);
     router.get('/api/basketItems/', list);
+    //post requests
     router.post('/api/basketItems/Add',addMany);
     router.post('/api/basketItems/Remove', remove);
 };
