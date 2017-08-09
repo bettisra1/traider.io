@@ -1,0 +1,57 @@
+// DB design
+user : {
+	"firstname": "",
+	"lastname": "",
+	"email": "",
+	"mobile": "",
+	"addresses": [],
+	"orders" : ["objects"]
+	
+}
+
+order: 	{
+	"_id" : #,
+	"datetime": "",
+	"products" : [
+		{
+			"productId": "",
+			"itemCount": "",
+			"itemPrice": "",
+		}
+	],
+	"itemTotal": #,
+	"packingCharges" : "",
+	"deliveryCharges": "",
+
+	"address":{},
+	"modeOfPayment":"",
+	"status" : "" // Initiated, Processing, InDelivery, Delivered, Cancelled	
+}
+
+sequence : {
+	"_id" : "orderId",
+	"sequenceValue" : 0
+}
+/* atomic incrementing of orderId
+>function getNextSequenceValue(sequenceName){ 
+ 
+   var sequenceDocument = db.sequences.findAndModify({ 
+      query:{_id: sequenceName }, 
+      update: {$inc:{sequence_value:1}}, 
+      new:true 
+   }); 
+  
+   return sequenceDocument.sequence_value; 
+}
+>db.orders.insert({ 
+   "_id":getNextSequenceValue("orderId"), 
+   "datetime":"", 
+   "products":[]
+   "itemTotal":,
+   "packingCharges":#,
+   "deliveryCharges":#,
+   "address":"",
+   "modeOfPayment":"paytm"
+   "status":"Initiated"
+})
+*/

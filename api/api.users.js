@@ -18,26 +18,30 @@ user : {
 	email: "",
 	mobile: "",
 	addresses: [],
+
+	orders: [
+		{
+			orderId : #,
+			datetime:
+			products: [
+				{
+					productId: "",
+					itemCount: "",
+					itemPrice: "",
+				}
+			],
+			itemTotal: #,
+			packingCharges : "",
+			deliveryCharges: ""
+
+			address:{},
+			modeOfPayment:""	
+		}
+	]
 }
-
-orders: [
-	{
-		orderId : #,
-		datetime:
-		products: [
-			{
-				productId: "",
-				itemCount: "",
-				itemPrice: "",
-			}
-		],
-		itemTotal: #,
-		packingCharges : "",
-		deliveryCharges: ""
-
-		address:{},
-		modeOfPayment:""	
-	}
-]
-
 */
+
+function register(req, res) {
+
+	db.insert()
+}
