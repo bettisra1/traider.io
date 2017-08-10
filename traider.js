@@ -29,10 +29,7 @@ createServer = function createServer() {
         resave: true,
         saveUninitialized: true,
         store: new MongoStore({
-            //url: "mongodb://localhost/traiderioSessions"
             url: dbUrl
-            //db: 'traiderioSessions',
-            //db: 'traiderio'
         })
     }));
 
