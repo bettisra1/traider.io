@@ -14,8 +14,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
                 templateUrl: '/views/basket.html',
                 controller: 'BasketController'
             })
-            .when('/login', {
-                templateUrl: '/views/login.html',
+            .when('/register', {
+                templateUrl: '/views/register.html',
                 controller: 'UserController'
             });
 

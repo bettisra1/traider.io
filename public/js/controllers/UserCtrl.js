@@ -3,10 +3,18 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
 
 		Users.register(user, function(err,data){
 			if(err){
-				alert(err);
+				alert(JSON.Stringify(err));
 				return;
 			}
-			$scope.loggedInUser = data;
+
+			if(data.errorCode === 200){
+				$scope.loggedInUser = data.payload;
+				$window.location = '/';	
+			}
+			if(data.errorCode !== 200){
+				alert(data.message);
+			}
+
 		})
 	}    
 });

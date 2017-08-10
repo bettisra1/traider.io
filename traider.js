@@ -21,7 +21,7 @@ createServer = function createServer() {
     server.use(express.static(__dirname + '/public'));
     server.use('/product/*', express.static(__dirname + '/public'));
     server.use('/basket/', express.static(__dirname + '/public'));
-    server.use('/login/', express.static(__dirname + '/public'))
+    server.use('/register/', express.static(__dirname + '/public'))
 
     server.use(cookieParser());
     server.use(expressSession({
@@ -35,7 +35,7 @@ createServer = function createServer() {
 
     // passport settings
     server.use(passport.initialize());
-    server.user(passport.session());
+    server.use(passport.session());
     
 
     // attach router handlers

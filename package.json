@@ -19,7 +19,9 @@
         "cookie-parser" : "*" ,
         "body-parser" : "*",
         "request-json" : "*",
-        "mongoose" : "*"
+        "mongoose" : "*",
+        "passport" : "*",
+        "passport-local" : "*"
       },
     "repository": {
         "type": "git",
