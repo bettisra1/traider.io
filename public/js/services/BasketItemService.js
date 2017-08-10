@@ -25,7 +25,7 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
 
         basketService.addOne = function(id, callback) {
 
-            caller = this;
+            caller = this; // BaksetCtrl
             $http({
                 method: 'get',
                 url: '/api/basketItems/Add/' + id
@@ -40,7 +40,7 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
         };
 
         basketService.add = function(id, itemCount, callback) {
-            caller = this;
+            caller = this; // BasketCtrl
             var _id = id;
             var _itemCount = itemCount;
             $http({

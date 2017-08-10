@@ -1,0 +1,11 @@
+<form name="registerForm">
+	Firstname:<input type="text" name="firstname" ng-model="user.firstname" required /><br>
+	LastName:<input type="text" name="lastname" ng-model="user.lastname" required /><br>
+	Email:<input type="email" name="email" ng-model="user.email"  required/><br>
+	Mobile:<input type="text" name="mobile" ng-model="user.mobile" required/><br>
+	<input type="submit" value="Register" ng-disabled="user.firstname.$invalid ||
+	 user.lastname.$invalid ||
+	 user.email.$invalid ||
+	 user.mobile.$invalid" ng-click="registerUser(user)"/>
+	 <p>{{user | json}}</p>
+</form>

@@ -1,1 +1,1 @@
-angular.module('frontendApp', ['ngRoute', 'appRoutes', 'ProductListCtrl', 'ProductDetailsCtrl', 'ProductService', 'BasketCtrl', 'BasketItemService']);
+angular.module('frontendApp', ['ngRoute', 'appRoutes', 'UserCtrl', 'UserService', 'ProductListCtrl', 'ProductDetailsCtrl', 'ProductService', 'BasketCtrl', 'BasketItemService' ]);

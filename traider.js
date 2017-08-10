@@ -8,6 +8,9 @@ var MongoStore = require('connect-mongo')({
 });
 var mongohandler = require("./db/db.client.js");
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 
 createServer = function createServer() {
 
@@ -18,6 +21,7 @@ createServer = function createServer() {
     server.use(express.static(__dirname + '/public'));
     server.use('/product/*', express.static(__dirname + '/public'));
     server.use('/basket/', express.static(__dirname + '/public'));
+    server.use('/login/', express.static(__dirname + '/public'))
 
     server.use(cookieParser());
     server.use(expressSession({
@@ -31,6 +35,10 @@ createServer = function createServer() {
             //db: 'traiderio'
         })
     }));
+
+    // passport settings
+    server.use(passport.initialize());
+    server.user(passport.session());
     
 
     // attach router handlers

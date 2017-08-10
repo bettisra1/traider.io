@@ -13,6 +13,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
             .when('/basket', {
                 templateUrl: '/views/basket.html',
                 controller: 'BasketController'
+            })
+            .when('/login', {
+                templateUrl: '/views/login.html',
+                controller: 'UserController'
             });
 
         $locationProvider.html5Mode(true);
