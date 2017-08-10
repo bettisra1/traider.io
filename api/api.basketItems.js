@@ -125,13 +125,6 @@ var remove = function(req, res) {
             return res.send(500);
         }
         console.log(data);
-        /*var productInfo = {
-            "productId": data._id,
-            "name": data.name,
-            "price": data.offers.price,
-            "itemCount" : req.body.itemCount
-        };*/
-
 
         var sess = req.session;
         if (!sess.products) {

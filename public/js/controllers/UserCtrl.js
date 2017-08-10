@@ -1,9 +1,22 @@
 angular.module('UserCtrl', []).controller('UserController', function($scope, Users) {
+	$scope.phoneNumberPattern = (function () {
+		/*var mobileRegex = /^[789]\d{9}$/;*/
+		var regxp = /^\d{10}$/;
+		return {
+        	test: function(value) {
+	            if( $scope.requireTel === false ) {
+	                return true;
+	            }
+            	return regexp.test(value);
+        	}
+        };
+	});
+
 	$scope.registerUser = function (user) {
 
 		Users.register(user, function(err,data){
 			if(err){
-				alert(JSON.Stringify(err));
+				alert(err);
 				return;
 			}
 

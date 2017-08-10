@@ -2,10 +2,127 @@
 	Firstname:<input type="text" name="firstname" ng-model="user.firstname" required /><br>
 	LastName:<input type="text" name="lastname" ng-model="user.lastname" required /><br>
 	Email:<input type="email" name="email" ng-model="user.email"  required/><br>
-	Mobile:<input type="text" name="mobile" ng-model="user.mobile" required/><br>
+	Mobile:<input type="text" 
+	 name="mobile"
+	 ng-model="user.mobile"
+	 ng-pattern="/^\d{10}$/"
+	 required/><br>
+	 Password:<input type="password" name="password" ng-model="user.password"  required/><br>
 	<input type="submit" value="Register" ng-disabled="user.firstname.$invalid ||
 	 user.lastname.$invalid ||
 	 user.email.$invalid ||
 	 user.mobile.$invalid" ng-click="registerUser(user)"/>
 	 <p>{{user | json}}</p>
 </form>
+
+<!-- 
+Example Form: https://stackoverflow.com/questions/35200508/regex-validation-angularjs
+
+<form id="form" name="form" novalidate>
+
+              <div class="col-sm-6">
+                  <h3>Customer Details</h3>
+                  <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">+91</span><input type="number" class="form-control" ng-model="user.mobile"  ng-pattern="regex" placeholder="Enter phone Number..." ng-blur="mobileCheck(user)"/>
+                    </div>
+                  <div ng-show="form.$submitted || form.mobile.$touched">
+                      <span ng-show="showMobileError">Enter valid mobile no</span>
+                  </div>
+                     <!-- <span>Mobile valid = {{form.input.$valid}}</span> -->
+ <!--
+                  </div>
+
+                  <div class="form-group">
+                    <label>Name(Optional)</label>
+                    <ul class="list-inline">
+                      <li><input type="text" class="form-control" ng-model="user.firstName" placeholder="First name" /></li>
+                      <li><input type="text" class="form-control" ng-model="user.lastName" placeholder="Last name" /></li>
+                    </ul>
+                     
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="email">Email(optional)</label>
+                    <input type="email" class="form-control" ng-model="user.email" placeholder="Enter Email id here" />
+                     
+                  </div>
+                  <div class="form-group">
+    
+                    <label for="altMobile">Alternate contact No.(optional)</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">+91</span> <input type="number" class="form-control" ng-model="user.altMobile" placeholder="Enter Alternate Mobile here" />
+                    </div>
+                   
+                     
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="dob">Date Of birth(optional)</label>
+                    <input type="text" class="form-control" ng-model="user.dob" />
+                     
+                  </div>
+
+
+                  <div class="form-group" id="gender">
+
+                    <label>Gender(optional)</label>
+                   
+                    <div class="input-group">
+                      <label for="male"><input type="radio" ng-model="user.gender" name="gender" value="male" />Male</label> 
+                      <label for="female"><input type="radio" ng-model="user.gender" name="gender" value="female" />Female</label>
+                      <label for="others"><input type="radio" ng-model="user.gender" name="gender" value="others" />Others</label>                      
+                    </div>
+ 
+                     
+                  </div>
+                 
+
+
+              </div>
+              <div class="col-sm-6">
+                <h3>Residential Address</h3>
+
+                <div class="form-group">
+
+                    <label>Pincode(optional)</label>
+                    <input type="number" class="form-control" name="pincode" ng-model="user.pincode" placeholder="Enter Pincode" />
+                     
+                </div>
+
+
+               
+                <div class="form-group">
+                    <label for="address">Address(optional)</label>
+                    <textarea ng-model="user.address" class="form-control" name="address" id="address" cols="30" rows="6" placeholder="Enter address details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="district">District(optional)</label>
+                    <input type="text" ng-model="user.district" class="form-control" name="district" placeholder="Enter District here">
+                </div>
+                <div class="form-group">
+                    <label for="district">State(optional)</label>
+                    <input type="text" ng-model="user.state" class="form-control" name="state" placeholder="Enter State here">
+                </div>
+                <div class="form-group">
+                    <label for="district">Country</label>
+                    <input type="text" ng-model="user.country" class="form-control" value="india" name="country" placeholder="India(This service is only within India" disabled>
+                </div>
+
+
+              </div>
+ -->
+
+             <!--  <div class="clearfix"></div>
+              <div class="col-sm-offset-3 col-sm-9">
+                  <button type="button" class="btn btn-default" id="reset" ng-click="reset()">Reset</button>
+                  <button type="submit" class="btn btn-default" id="submit" ng-click="update(user)">Save &amp; Show</button>
+              </div> -->
+<!--
+            </form> 
+
+-->

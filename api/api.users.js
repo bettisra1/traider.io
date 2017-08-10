@@ -17,6 +17,7 @@ user : {
 	lastname: "",
 	email: "",
 	mobile: "",
+	password: "",
 	addresses: [],
 
 	orders: [
@@ -43,13 +44,15 @@ user : {
 */
 
 function register(req, res) {
-	console.log("inside register user: "+req.body);
+	console.log("inside register user: "+req.body.mobile);
 	if(req.body.firstname === undefined ||
 		req.body.lastname === undefined ||
 		req.body.email === undefined ||
-		req.body.mobile === undefined 
+		req.body.mobile === undefined ||
+		req.body.password === undefined
 	) {
-		res.status(400).json({"payload": req.body, "message":"Invalid Payload"});
+		res.json({"errorCode": 400,"payload": req.body, "message":"Invalid Payload"});
+		return;
 	}
 	var userRequest = req.body;
 	db.find(userRequest.email,function(docs){
@@ -61,7 +64,8 @@ function register(req, res) {
 				"firstname": userRequest.firstname,
 				"lastname": userRequest.lastname,
 				"email": userRequest.email,
-				"mobile": userRequest.mobile
+				"mobile": userRequest.mobile,
+				"password" : userRequest.password
 			}, function(result){
 				res.json({"errorCode" : 200, "message": "Ok", "payload":result});
 			});
