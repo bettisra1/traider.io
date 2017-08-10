@@ -20,6 +20,7 @@ exports.insert = function(data, callback) {
                 mongoclient.close();
                 return callback(result);
             }
+            callback(result);
         });
     });
 };

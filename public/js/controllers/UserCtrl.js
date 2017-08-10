@@ -21,8 +21,9 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
 			}
 
 			if(data.errorCode === 200){
+				alert("User successfully registered");
 				$scope.loggedInUser = data.payload;
-				$window.location = '/';	
+				//$window.location = '/';	
 			}
 			if(data.errorCode !== 200){
 				alert(data.message);
